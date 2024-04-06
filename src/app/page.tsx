@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Link prefetch={false} href={'/program/'} className="duration-200 block w-fit mt-5 mx-auto hover:text-custom-teal">
-        На главную
+        К программам
       </Link>
       <Stocks />
     </>
