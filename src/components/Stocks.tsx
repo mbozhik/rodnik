@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import {client, urlForImage} from '@/lib/sanity'
 
-export const revalidate = 30
+export const revalidate = 0
 
 const getData = async () => {
   const query = `

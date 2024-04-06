@@ -11,7 +11,7 @@ interface Program {
   slug: {current: string}
 }
 
-export const revalidate = 30
+export const revalidate = 0
 
 const getData = async (): Promise<Program[]> => {
   const query = `
