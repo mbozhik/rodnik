@@ -23,12 +23,11 @@ const getData = async (slug) => {
 
 const ProgramPage = async ({params}) => {
   const program = await getData(params.slug)
-  console.log('🚀 ~ ProgramPage ~ program:', program)
 
   return (
     <section className="grid w-screen h-screen place-items-center">
       <div className="flex flex-col items-center w-1/2 gap-5">
-        <Link href={'/'} className="mx-auto duration-200 w-fit hover:text-custom-teal">
+        <Link prefetch={false} href={'/'} className="duration-200 block w-fit mt-5 mx-auto hover:text-custom-teal">
           На главную
         </Link>
         <div className="flex flex-col gap-5 p-5 border-2 border-custom-teal group">
