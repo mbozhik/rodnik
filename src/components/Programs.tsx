@@ -1,3 +1,5 @@
+import {unstable_noStore as noStore} from 'next/cache'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import {client, urlForImage} from '@/lib/sanity'
@@ -15,6 +17,8 @@ export const revalidate = 0
 export const dynamic = 'force-dynamic'
 
 const getData = async (): Promise<Program[]> => {
+  noStore()
+
   const query = `
     *[_type == 'program'] {
         name,
