@@ -23,6 +23,7 @@ const getData = async (slug) => {
 
 const ProgramPage = async ({params}) => {
   const program = await getData(params.slug)
+  console.log('🚀 ~ ProgramPage ~ program:', program)
 
   return (
     <section className="grid w-screen h-screen place-items-center">
