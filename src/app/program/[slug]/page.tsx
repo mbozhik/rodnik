@@ -3,6 +3,8 @@ import Image from 'next/image'
 
 import {client, urlForImage, urlForFile} from '@/lib/sanity'
 
+export const revalidate = 30
+
 const getData = async (slug) => {
   const query = `
     *[_type == 'program' && slug.current == '${slug}'][0] {

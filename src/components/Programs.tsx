@@ -11,6 +11,8 @@ interface Program {
   slug: {current: string}
 }
 
+export const revalidate = 30
+
 const getData = async (): Promise<Program[]> => {
   const query = `
     *[_type == 'program'] {
