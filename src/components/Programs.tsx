@@ -12,6 +12,7 @@ interface Program {
 }
 
 export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 const getData = async (): Promise<Program[]> => {
   const query = `
