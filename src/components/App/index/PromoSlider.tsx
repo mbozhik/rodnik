@@ -30,7 +30,7 @@ const Slider: React.FC<SliderProps> = ({sliderData, classes}) => {
           {!isMobile ? (
             <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="1920" height="700" alt={`акция ${index + 1}`} src={slide.imageUrl} />
           ) : (
-            <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="450" height="900" alt={`акция ${index + 1}`} src={slide.mobileImageUrl || slide.imageUrl} /> // Use mobileImageUrl if available, otherwise fallback to imageUrl
+            <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="450" height="900" alt={`акция ${index + 1}`} src={slide.mobileImageUrl} /> // Use mobileImageUrl if available
           )}
 
           <div className="absolute inset-0 flex flex-col justify-center bg-black bg-opacity-10">
