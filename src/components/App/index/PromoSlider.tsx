@@ -1,9 +1,6 @@
 'use client'
 
-function isMobile() {
-  const mobileWidthThreshold = 768
-  return window.innerWidth < mobileWidthThreshold
-}
+import {isMobile} from '@bozzhik/is-mobile'
 
 import Image from 'next/image'
 import {Swiper, SwiperSlide} from 'swiper/react'
@@ -19,8 +16,9 @@ interface SliderProps {
   sliderData: {
     title: string
     caption: string
-    imageUrl: string
-    mobileImageUrl: string
+    imageUrl?: string
+    mobileImageUrl?: string
+    isMobile: boolean
   }[]
   classes: string
 }
@@ -30,17 +28,13 @@ const Slider: React.FC<SliderProps> = ({sliderData, classes}) => {
     <Swiper data-section="promo-index" className={classes} loop={true} speed={1000} autoplay={{delay: 3000, disableOnInteraction: true}} pagination={{clickable: true}} grabCursor={true} modules={[Pagination, Autoplay]}>
       {sliderData.map((slide, index) => (
         <SwiperSlide className="relative grid place-items-center" key={index}>
-          {isMobile() ? (
-            <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="450" height="900" alt={`акция ${index + 1}`} src={slide.mobileImageUrl} /> // Use mobileImageUrl if available
-          ) : (
-            <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="1920" height="700" alt={`акция ${index + 1}`} src={slide.imageUrl} />
-          )}
+          <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width={slide.isMobile ? 450 : 1920} height={slide.isMobile ? 900 : 700} alt={`акция ${index + 1}`} src={slide.isMobile ? slide.mobileImageUrl : slide.imageUrl} />
 
           <div className="absolute inset-0 flex flex-col justify-center bg-black bg-opacity-10">
             <div className="w-[75%] xl:w-[85%] mx-auto mt-5 space-y-2 xl:space-y-1 text-white sm:text-center">
               <h2 className="text-6xl xl:text-5xl sm:text-3xl font-medium uppercase max-w-[20ch] sm:w-full sm:mx-auto">{slide.title}</h2>
               <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.caption} />
-              {/* <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={isMobile() ? 'мобильник' : 'комп'} /> */}
+              <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.isMobile ? 'мобильник' : 'комп'} />
             </div>
           </div>
         </SwiperSlide>
