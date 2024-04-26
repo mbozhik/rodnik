@@ -17,7 +17,7 @@ interface SliderProps {
     title: string
     caption: string
     imageUrl: string
-    mobileImageUrl?: string
+    mobileImageUrl: string
   }[]
   classes: string
 }
@@ -27,10 +27,10 @@ const Slider: React.FC<SliderProps> = ({sliderData, classes}) => {
     <Swiper data-section="promo-index" className={classes} loop={true} speed={1000} autoplay={{delay: 3000, disableOnInteraction: true}} pagination={{clickable: true}} grabCursor={true} modules={[Pagination, Autoplay]}>
       {sliderData.map((slide, index) => (
         <SwiperSlide className="relative grid place-items-center" key={index}>
-          {!isMobile ? (
-            <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="1920" height="700" alt={`акция ${index + 1}`} src={slide.imageUrl} />
-          ) : (
+          {isMobile ? (
             <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="450" height="900" alt={`акция ${index + 1}`} src={slide.mobileImageUrl} /> // Use mobileImageUrl if available
+          ) : (
+            <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="1920" height="700" alt={`акция ${index + 1}`} src={slide.imageUrl} />
           )}
 
           <div className="absolute inset-0 flex flex-col justify-center bg-black bg-opacity-10">
