@@ -48,7 +48,7 @@ const Promo = async () => {
   return (
     <div>
       <PromoSlider sliderData={sliderData} classes="w-full h-[70vh] sm:!h-[100svh] sm:h-[100vh]" />
-      {isMobile ? 'mobile' : 'desk'}
+      {/* {isMobile ? 'mobile' : 'desk'} */}
     </div>
   )
 }

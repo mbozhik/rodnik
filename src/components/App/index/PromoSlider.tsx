@@ -34,7 +34,7 @@ const Slider: React.FC<SliderProps> = ({sliderData, classes}) => {
             <div className="w-[75%] xl:w-[85%] mx-auto mt-5 space-y-2 xl:space-y-1 text-white sm:text-center">
               <h2 className="text-6xl xl:text-5xl sm:text-3xl font-medium uppercase max-w-[20ch] sm:w-full sm:mx-auto">{slide.title}</h2>
               <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.caption} />
-              <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.isMobile ? 'мобильник' : 'комп'} />
+              {/* <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.isMobile ? 'мобильник' : 'комп'} /> */}
             </div>
           </div>
         </SwiperSlide>
