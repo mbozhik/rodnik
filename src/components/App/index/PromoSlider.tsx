@@ -1,6 +1,9 @@
 'use client'
 
-import {isMobile} from '@bozzhik/is-mobile'
+function isMobile() {
+  const mobileWidthThreshold = 768
+  return window.innerWidth < mobileWidthThreshold
+}
 
 import Image from 'next/image'
 import {Swiper, SwiperSlide} from 'swiper/react'
@@ -27,7 +30,7 @@ const Slider: React.FC<SliderProps> = ({sliderData, classes}) => {
     <Swiper data-section="promo-index" className={classes} loop={true} speed={1000} autoplay={{delay: 3000, disableOnInteraction: true}} pagination={{clickable: true}} grabCursor={true} modules={[Pagination, Autoplay]}>
       {sliderData.map((slide, index) => (
         <SwiperSlide className="relative grid place-items-center" key={index}>
-          {isMobile ? (
+          {isMobile() ? (
             <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="450" height="900" alt={`акция ${index + 1}`} src={slide.mobileImageUrl} /> // Use mobileImageUrl if available
           ) : (
             <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="1920" height="700" alt={`акция ${index + 1}`} src={slide.imageUrl} />
@@ -37,6 +40,7 @@ const Slider: React.FC<SliderProps> = ({sliderData, classes}) => {
             <div className="w-[75%] xl:w-[85%] mx-auto mt-5 space-y-2 xl:space-y-1 text-white sm:text-center">
               <h2 className="text-6xl xl:text-5xl sm:text-3xl font-medium uppercase max-w-[20ch] sm:w-full sm:mx-auto">{slide.title}</h2>
               <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.caption} />
+              {/* <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={isMobile() ? 'мобильник' : 'комп'} /> */}
             </div>
           </div>
         </SwiperSlide>
