@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "explorer http://192.168.0.101:2000 & next dev -H 192.168.0.101 -p 2000",
+    "dev": "explorer http://192.168.13.254:2000 & next dev -H 192.168.13.254 -p 2000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
