@@ -1,7 +1,14 @@
 import {client, urlForImage} from '@/lib/sanity'
 import {revalidateOnTime} from '@/lib/utils'
 
-import PromoSlider from '##/index/PromoSlider'
+import dynamic from 'next/dynamic'
+
+const PromoSlider = dynamic(
+  () => {
+    return import('##/index/PromoSlider')
+  },
+  {ssr: false},
+)
 
 export interface Promo {
   title: string
