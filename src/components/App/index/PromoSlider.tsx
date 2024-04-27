@@ -18,23 +18,35 @@ interface SliderProps {
     caption: string
     imageUrl?: string
     mobileImageUrl?: string
-    isMobile: boolean
   }[]
   classes: string
 }
 
 const Slider: React.FC<SliderProps> = ({sliderData, classes}) => {
-  return (
+  return !isMobile ? (
     <Swiper data-section="promo-index" className={classes} loop={true} speed={1000} autoplay={{delay: 3000, disableOnInteraction: true}} pagination={{clickable: true}} grabCursor={true} modules={[Pagination, Autoplay]}>
       {sliderData.map((slide, index) => (
         <SwiperSlide className="relative grid place-items-center" key={index}>
-          <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width={slide.isMobile ? 450 : 1920} height={slide.isMobile ? 900 : 700} alt={`акция ${index + 1}`} src={slide.isMobile ? slide.mobileImageUrl : slide.imageUrl} />
+          <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="1920" height="700" alt={`акция ${index + 1}`} src={slide.imageUrl} />
 
           <div className="absolute inset-0 flex flex-col justify-center bg-black bg-opacity-10">
             <div className="w-[75%] xl:w-[85%] mx-auto mt-5 space-y-2 xl:space-y-1 text-white sm:text-center">
               <h2 className="text-6xl xl:text-5xl sm:text-3xl font-medium uppercase max-w-[20ch] sm:w-full sm:mx-auto">{slide.title}</h2>
               <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.caption} />
-              {/* <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.isMobile ? 'мобильник' : 'комп'} /> */}
+            </div>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  ) : (
+    <Swiper data-section="promo-mobile-index" className={classes} loop={true} speed={1000} autoplay={{delay: 3000, disableOnInteraction: true}} pagination={{clickable: true}} grabCursor={true} modules={[Pagination, Autoplay]}>
+      {sliderData.map((slide, index) => (
+        <SwiperSlide className="relative grid place-items-center" key={index}>
+          <Image quality={100} priority={true} className="absolute inset-0 block object-cover s-full" width="450" height="900" alt={`акция ${index + 1}`} src={slide.mobileImageUrl} />
+          <div className="absolute inset-0 flex flex-col justify-center bg-black bg-opacity-10">
+            <div className="w-[75%] xl:w-[85%] mx-auto mt-5 space-y-2 xl:space-y-1 text-white sm:text-center">
+              <h2 className="text-6xl xl:text-5xl sm:text-3xl font-medium uppercase max-w-[20ch] sm:w-full sm:mx-auto">{slide.title}</h2>
+              <Heading type="caption" classes="sm:w-full sm:mx-auto text-lg xl:text-base" text={slide.caption} />
             </div>
           </div>
         </SwiperSlide>
